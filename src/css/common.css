@@ -16,3 +16,19 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* my styles */
+
+.timer {
+  display: flex;
+  font-size: 40px;
+}
+
+.field {
+  margin: 20;
+  text-align: center;
+}
+
+.label {
+  display: block;
+}

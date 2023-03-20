@@ -4,17 +4,19 @@ const formEl = document.querySelector('.form');
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    return Promise.resolve(`Fulfilled Promose ${position} in ${delay}ms`).then(
-      value => Notify.success(value)
-    );
-    // Fulfill
-  } else {
-    return Promise.reject(`Rejected Promose ${position} in ${delay}ms`).catch(
-      error => Notify.failure(error)
-    );
-    // Reject
-  }
+  setTimeout(() => {
+    if (shouldResolve) {
+      return Promise.resolve(
+        `Fulfilled Promose ${position} in ${delay}ms`
+      ).then(value => Notify.success(value));
+      // Fulfill
+    } else {
+      return Promise.reject(`Rejected Promose ${position} in ${delay}ms`).catch(
+        error => Notify.failure(error)
+      );
+      // Reject
+    }
+  }, delay);
 }
 
 formEl.addEventListener('submit', e => {
@@ -23,8 +25,7 @@ formEl.addEventListener('submit', e => {
   let callDelay = Number(formEl.elements.delay.value);
 
   for (let i = 1; i <= formEl.elements.amount.value; i += 1) {
-    setTimeout(() => createPromise(i, callDelay), callDelay);
-    console.log(callDelay);
+    createPromise(i, callDelay);
     callDelay += Number(formEl.elements.step.value);
   }
 });

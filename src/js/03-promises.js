@@ -7,11 +7,11 @@ function createPromise(position, delay) {
   setTimeout(() => {
     if (shouldResolve) {
       return Promise.resolve(
-        `Fulfilled Promose ${position} in ${delay}ms`
+        `Fulfilled Promise ${position} in ${delay}ms`
       ).then(value => Notify.success(value));
       // Fulfill
     } else {
-      return Promise.reject(`Rejected Promose ${position} in ${delay}ms`).catch(
+      return Promise.reject(`Rejected Promise ${position} in ${delay}ms`).catch(
         error => Notify.failure(error)
       );
       // Reject
